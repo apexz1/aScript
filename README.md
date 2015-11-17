@@ -1,2 +1,2 @@
 # aScript
-Modifaction Script for Blizzard UI
+Modifaction Script for Blizzard UI(World of Warcraft)
