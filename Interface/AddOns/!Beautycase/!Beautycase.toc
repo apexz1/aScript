@@ -1,0 +1,6 @@
+## Interface: 60000
+## Title: !|cff99CCFFBeautycase|r
+## Anchor: Neal "Neave" Edited for AftermathhUI
+## Notes: Simple AddOn that let you skin borders. but does nothing itself.
+
+!Beautycase.lua
