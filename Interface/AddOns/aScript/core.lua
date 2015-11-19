@@ -9,23 +9,15 @@ local function eventHandler(self,event)
 		-- ### TESTING
 
 
-		SLASH_SHOWXP1 = '/showxp';
-		function SlashCmdList.SHOWXP(msg, editbox)
-			print("showxp |cffff0000Not implemented yet.")
-			-- pXP = UnitXP("player")
-			-- XPMax = UnitXPMax("player")
-			-- DEFAULT_CHAT_FRAME:AddMessage("Your XP is currently at "..floor( (XP / XPMax)*100 ).."%.",1,0,0)
-		end
-
 
 		-- ### TESTING END
 
 
-		-- #### SCALING & POSITIONING FRAMES ####
+		-- [[#### SCALING & POSITIONING FRAMES ####]]
 
-		PlayerFrame:SetScale(1.15)
-		TargetFrame:SetScale(1.15)
-		FocusFrame:SetScale(1.15)
+		PlayerFrame:SetScale(1.2)
+		TargetFrame:SetScale(1.2)
+		FocusFrame:SetScale(1.1)
 		-- BuffFrame:SetScale(1.1);
 
 		--BuffFrame:ClearAllPoints();
@@ -99,8 +91,83 @@ local function eventHandler(self,event)
 		CastingBarFrameIcon:SetPoint("RIGHT", CastingBarFrame, "LEFT", -5, 2)
 
 
-		-- #### QUALITY OF LIFE ####
+		-- [[#### QUALITY OF LIFE ####]]
 
+		
+		--show the MultiBarRight on mouse over, else hide
+		local function MultiBarRightOnHover(alpha)
+
+			if MultiBarRight:IsShown() then
+				for i = 1, 12 do
+					local button = _G["MultiBarRightButton"..i]
+					button:SetAlpha(alpha)
+
+					if(MultiBarLeft:IsShown()) then
+						local button2 = _G["MultiBarLeftButton"..i]
+						button2:SetAlpha(alpha)
+					end
+				end
+			end
+		end
+		--show the MultiBarLeft on mouse over, else hide
+		local function MultiBarLeftOnHover(alpha)
+
+			if MultiBarLeft:IsShown() then
+				for i = 1, 12 do
+					local button = _G["MultiBarLeftButton"..i]
+					button:SetAlpha(alpha)
+
+					if(MultiBarRight:IsShown()) then
+						local button2 = _G["MultiBarRightButton"..i]
+						button2:SetAlpha(alpha)
+					end
+				end
+			end
+		end
+
+
+		--show the MultiBarBottomRight on mouse over, else hide
+		local function MultiBarBottomRightOnHover(alpha)
+
+			if MultiBarBottomRight:IsShown() then
+				for i = 1, 12 do
+					local button = _G["MultiBarBottomRightButton"..i]
+					button:SetAlpha(alpha)
+				end
+			end
+		end
+
+		MultiBarRight:EnableMouse(true)
+		MultiBarLeft:EnableMouse(true)
+		MultiBarBottomRight:EnableMouse(true)
+
+		MultiBarRight:SetScript("OnEnter", function(self) MultiBarRightOnHover(1) end)
+		MultiBarRight:SetScript("OnLeave", function(self) MultiBarRightOnHover(0) end)
+		MultiBarLeft:SetScript("OnEnter", function(self) MultiBarLeftOnHover(1) end)
+		MultiBarLeft:SetScript("OnLeave", function(self) MultiBarLeftOnHover(0) end)
+		MultiBarBottomRight:SetScript("OnEnter", function(self) MultiBarBottomRightOnHover(1) end)
+		MultiBarBottomRight:SetScript("OnLeave", function(self) MultiBarBottomRightOnHover(0) end)
+
+		for i = 1, 12 do
+			local button = _G["MultiBarRightButton"..i]
+			local button2 = _G["MultiBarLeftButton"..i]
+			local button3 = _G["MultiBarBottomRightButton"..i]
+			
+			button:SetAlpha(0)
+			button2:SetAlpha(0)
+			button3:SetAlpha(0)
+
+			button:HookScript("OnEnter", function(self) MultiBarRightOnHover(1) end)
+			button:HookScript("OnLeave", function(self) MultiBarRightOnHover(0) end)
+
+			button2:HookScript("OnEnter", function(self) MultiBarLeftOnHover(1) end)
+			button2:HookScript("OnLeave", function(self) MultiBarLeftOnHover(0) end)
+			
+			button3:HookScript("OnEnter", function(self) MultiBarBottomRightOnHover(1) end)
+			button3:HookScript("OnLeave", function(self) MultiBarBottomRightOnHover(0) end)	
+		end
+		
+		
 		UIErrorsFrame:UnregisterEvent("UI_ERROR_MESSAGE")
 
 		for i=1,4 do _G["ChatFrame"..i]:SetFont("Fonts\\ARIALN.TTF",16,"OUTLINE")end	
@@ -160,7 +227,26 @@ local function eventHandler(self,event)
 		PetHitIndicator:SetText(nil)
 		PetHitIndicator.SetText = function() end
 
+		-- Changes the font and size of hotkey & macro text on default action bars
+		local defaultStubs = {
+			 ActionButton=12, MultiBarRightButton=12,
+			 MultiBarLeftButton=12, MultiBarBottomRightButton=12,
+			 MultiBarBottomLeftButton=12, StanceButton=10, PetActionButton=10,
+		}
+		for stub,numButtons in pairs(defaultStubs) do
+			for i=1,numButtons do
+				_G[stub..i.."HotKey"]:SetFont("Fonts\\MORPHEUS.ttf",16,"OUTLINE,THICKOUTLINE,MONOCHROME")
+			end
+		end
 
+		SLASH_SHOWXP1 = '/showxp';
+		function SlashCmdList.SHOWXP(msg, editbox)
+			print("showxp |cffff0000Not implemented yet.")
+			-- pXP = UnitXP("player")
+			-- XPMax = UnitXPMax("player")
+			-- DEFAULT_CHAT_FRAME:AddMessage("Your XP is currently at "..floor( (XP / XPMax)*100 ).."%.",1,0,0)
+		end
+		
 		--classcolors
 
 		local function colour(statusbar, unit)

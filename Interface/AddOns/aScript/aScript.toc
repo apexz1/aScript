@@ -1,0 +1,13 @@
+## Title: aScript
+## Interface: 60200
+## Author: apexz
+## Title: |cffa500aScript
+## Version: 2.0.1
+
+## Notes: Blizzard standard UI modifications.
+## Notes-deDE: Modifikationen für das Standard Interface.
+
+sell.lua
+hider.lua
+core.lua
+

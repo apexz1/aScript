@@ -1,4 +1,4 @@
--- Autosell grey trash and repair:
+-- [[Autosell grey trash and repair:]]
 local g = CreateFrame("Frame")
 g:RegisterEvent("MERCHANT_SHOW")
 
