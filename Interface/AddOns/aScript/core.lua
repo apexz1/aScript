@@ -1,5 +1,6 @@
 local frame = CreateFrame("FRAME")
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+frame:RegisterEvent("PLAYER_LOGIN")
 
 if event =="PLAYER_LOGIN" then
 	print("Hi|cffff0000",GetUnitName("PLAYER"), "|r, aScripts v2.0.1 has loaded !!")
