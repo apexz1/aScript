@@ -1,20 +1,29 @@
 local frame = CreateFrame("FRAME")
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 
+if event =="PLAYER_LOGIN" then
+	print("Hi|cffff0000",GetUnitName("PLAYER"), "|r, aScripts v2.0.1 has loaded !!")
+	print("type /|cff009cffashelp|r for commandlist!")
+end
+
 local function eventHandler(self,event)
 	if event == "PLAYER_ENTERING_WORLD" then
-		print("Hi|cffff0000",GetUnitName("PLAYER"), "|r, aScripts v2.0.0 has loaded !!")
-		print("type /|cff009cffashelp|r for commandlist!")
-
 		-- ### TESTING
-
-
-
+		
 		-- ### TESTING END
 
 
 		-- [[#### SCALING & POSITIONING FRAMES ####]]
 
+		-- Just so you understand how this works: obj:SetPoint(point, relativeFrame, relativePoint, ofsx, ofsy)
+		-- - point is the point of the object that'll be considered its anchor when adjusting;
+		-- - relativeFrame is the frame we are attaching it to (use UIParent when you don't want to attach it to anything - that's the whole fullscreen UI frame);
+		-- - relativePoint is the point we attach the object to
+		-- - ofsx and ofsy are x and y offsets
+
+		-- So, in this case we tell it to attach TargetFrameSpellBar with its "BOTTOM" to the "TOP" of TargetFrame, and move it 15 pixels to the left (x offset).		
+		
+		
 		PlayerFrame:SetScale(1.2)
 		TargetFrame:SetScale(1.2)
 		FocusFrame:SetScale(1.1)
@@ -78,7 +87,7 @@ local function eventHandler(self,event)
 		CastingBarFrame:ClearAllPoints()
 		CastingBarFrame:SetPoint("CENTER",UIParent,"CENTER", 0, -235)
 		CastingBarFrame.SetPoint = function() end
-		CastingBarFrame:SetScale(1.0)
+		CastingBarFrame:SetScale(1.2)
 
 		CastingBarFrame.timer = CastingBarFrame:CreateFontString(nil);
 		CastingBarFrame.timer:SetFont(STANDARD_TEXT_FONT,12,"OUTLINE");
@@ -90,9 +99,18 @@ local function eventHandler(self,event)
 		CastingBarFrameIcon:SetSize(20, 20)
 		CastingBarFrameIcon:SetPoint("RIGHT", CastingBarFrame, "LEFT", -5, 2)
 
-
+		-- unattach the target castbar from targetFrame and place it in the center
+		TargetFrameSpellBar:ClearAllPoints()
+		TargetFrameSpellBar:SetPoint("CENTER", UIParent, "CENTER", 0, -100)
+		TargetFrameSpellBar.SetPoint = function() end
+		TargetFrameSpellBar:SetScale(1.2)
+		
+		
 		-- [[#### QUALITY OF LIFE ####]]
 
+		
+		-- Disable the group number frame
+		PlayerFrameGroupIndicator.Show = function() return end
 		
 		--show the MultiBarRight on mouse over, else hide
 		local function MultiBarRightOnHover(alpha)
@@ -124,8 +142,6 @@ local function eventHandler(self,event)
 				end
 			end
 		end
-
-
 		--show the MultiBarBottomRight on mouse over, else hide
 		local function MultiBarBottomRightOnHover(alpha)
 
@@ -215,11 +231,25 @@ local function eventHandler(self,event)
 				end
 		end
 
-		--frame:SetScript("OnEvent", eventHandler)
 
 		for _, BarTextures in pairs({TargetFrameNameBackground, FocusFrameNameBackground}) do
 				BarTextures:SetTexture("Interface\\TargetingFrame\\UI-StatusBar")
 		end
+		
+		-- Class icons in portraits
+		-- hooksecurefunc("UnitFramePortrait_Update",function(self)
+			-- if self.portrait then
+					-- if UnitIsPlayer(self.unit) then                         
+							-- local t = CLASS_ICON_TCOORDS[select(2, UnitClass(self.unit))]
+							-- if t then
+									-- self.portrait:SetTexture("Interface\\TargetingFrame\\UI-Classes-Circles")
+									-- self.portrait:SetTexCoord(unpack(t))
+							-- end
+					-- else
+							-- self.portrait:SetTexCoord(0,1,0,1)
+					-- end
+			-- end
+		-- end)
 
 		---- Disable healing/damage spam over player/pet frame
 		PlayerHitIndicator:SetText(nil)

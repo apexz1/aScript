@@ -1,7 +1,7 @@
 ## Title: aScript
 ## Interface: 60200
 ## Author: apexz
-## Title: |cffa500aScript
+## Title: |cff7fff7fa|cffff8000Script|r
 ## Version: 2.0.1
 
 ## Notes: Blizzard standard UI modifications.
