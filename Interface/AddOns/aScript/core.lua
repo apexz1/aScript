@@ -25,14 +25,14 @@ local function eventHandler(self,event)
 		-- So, in this case we tell it to attach TargetFrameSpellBar with its "BOTTOM" to the "TOP" of TargetFrame, and move it 15 pixels to the left (x offset).		
 		
 		
-		PlayerFrame:SetScale(1.2)
-		TargetFrame:SetScale(1.2)
-		FocusFrame:SetScale(1.1)
-		-- BuffFrame:SetScale(1.1);
+		PlayerFrame:SetScale(1)
+		TargetFrame:SetScale(1)
+		FocusFrame:SetScale(1)
+		BuffFrame:SetScale(1.18);
 
-		--BuffFrame:ClearAllPoints();
-		--BuffFrame:SetParent(MiniMapCluster);
-		--BuffFrame:SetPoint("TOPRIGHT",-190,-15)
+		BuffFrame:ClearAllPoints();
+		BuffFrame:SetParent(MiniMapCluster);
+		BuffFrame:SetPoint("TOPRIGHT",-190,-15)
 
 		TargetFrameToT:ClearAllPoints()
 		TargetFrameToT:SetPoint("BOTTOMRIGHT",TargetFrame,-15,-10)
@@ -221,16 +221,16 @@ local function eventHandler(self,event)
 		end)
 
 		-- adds classColor to TargetFrame & FocusFrame 
-		local function eventHandler(self, event, ...)
-				if UnitIsPlayer("target") then
-						c = RAID_CLASS_COLORS[select(2, UnitClass("target"))]
-						TargetFrameNameBackground:SetVertexColor(c.r, c.g, c.b)
-				end
-				if UnitIsPlayer("focus") then
-						c = RAID_CLASS_COLORS[select(2, UnitClass("focus"))]
-						FocusFrameNameBackground:SetVertexColor(c.r, c.g, c.b)
-				end
-		end
+--		local function eventHandler(self, event, ...)
+--				if UnitIsPlayer("target") then
+--						c = RAID_CLASS_COLORS[select(2, UnitClass("target"))]
+--						TargetFrameNameBackground:SetVertexColor(c.r, c.g, c.b)
+--				end
+--				if UnitIsPlayer("focus") then
+--						c = RAID_CLASS_COLORS[select(2, UnitClass("focus"))]
+--						FocusFrameNameBackground:SetVertexColor(c.r, c.g, c.b)
+--				end
+--		end
 
 
 		for _, BarTextures in pairs({TargetFrameNameBackground, FocusFrameNameBackground}) do
@@ -280,20 +280,20 @@ local function eventHandler(self,event)
 		
 		--classcolors
 
-		local function colour(statusbar, unit)
-				local _, class, c
-				if UnitIsPlayer(unit) and UnitIsConnected(unit) and unit == statusbar.unit and UnitClass(unit) then
-						_, class = UnitClass(unit)
-						c = CUSTOM_CLASS_COLORS and CUSTOM_CLASS_COLORS[class] or RAID_CLASS_COLORS[class]
-						statusbar:SetStatusBarColor(c.r, c.g, c.b)
-						PlayerFrameHealthBar:SetStatusBarColor(0,1,0)
-				end
-		end
-
-		hooksecurefunc("UnitFrameHealthBar_Update", colour)
-		hooksecurefunc("HealthBar_OnValueChanged", function(self)
-				colour(self, self.unit)
-		end)
+--		local function colour(statusbar, unit)
+--				local _, class, c
+--				if UnitIsPlayer(unit) and UnitIsConnected(unit) and unit == statusbar.unit and UnitClass(unit) then
+--						_, class = UnitClass(unit)
+--						c = CUSTOM_CLASS_COLORS and CUSTOM_CLASS_COLORS[class] or RAID_CLASS_COLORS[class]
+--						statusbar:SetStatusBarColor(c.r, c.g, c.b)
+--						PlayerFrameHealthBar:SetStatusBarColor(0,1,0)
+--				end
+--		end
+--
+--		hooksecurefunc("UnitFrameHealthBar_Update", colour)
+--		hooksecurefunc("HealthBar_OnValueChanged", function(self)
+--				colour(self, self.unit)
+--		end)
 
 		local function Show(frame)
 			--frame:UnregisterAllEvents()
