@@ -16,18 +16,18 @@ g:SetScript("OnEvent", function()
         if(CanMerchantRepair()) then
                 local cost = GetRepairAllCost()
                 if cost > 0 then
-                        local money = GetMoney()
-                        if IsInGuild() then
-                                local guildMoney = GetGuildBankWithdrawMoney()
-                                if guildMoney > GetGuildBankMoney() then
-                                        guildMoney = GetGuildBankMoney()
-                                end
-                                if guildMoney > cost and CanGuildBankRepair() then
-                                        RepairAllItems(1)
-                                        print(format("|cfff07100Repair cost covered by G-Bank: %.1fg|r", cost * 0.0001))
-                                        return
-                                end
-                        end
+                        local money = GetMoney()                        
+                        --if IsInGuild() then
+                          --      local guildMoney = GetGuildBankWithdrawMoney()
+                            --    if guildMoney > GetGuildBankMoney() then
+                              --          guildMoney = GetGuildBankMoney()
+                                --end
+                                --if guildMoney > cost and CanGuildBankRepair() then
+                                  --      RepairAllItems(1)
+                                    --    print(format("|cfff07100Repair cost covered by G-Bank: %.1fg|r", cost * 0.0001))
+                                      --  return
+                                --end
+                        --end
                         if money > cost then
                                 RepairAllItems()
                                 print(format("|cffead000Repair cost: %.1fg|r", cost * 0.0001))

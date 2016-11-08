@@ -11,13 +11,13 @@ for i=1, 12 do
 end
 
 --[[hide keybinds]]
--- for i=1, 12 do
-		-- _G["ActionButton"..i.."HotKey"]:SetAlpha(0) -- main bar
-		-- _G["MultiBarBottomRightButton"..i.."HotKey"]:SetAlpha(0) -- bottom right bar
-		-- _G["MultiBarBottomLeftButton"..i.."HotKey"]:SetAlpha(0) -- bottom left bar
-		-- _G["MultiBarRightButton"..i.."HotKey"]:SetAlpha(0) -- right bar
-		-- _G["MultiBarLeftButton"..i.."HotKey"]:SetAlpha(0) -- left bar
--- end
+for i=1, 12 do
+		_G["ActionButton"..i.."HotKey"]:SetAlpha(0) -- main bar
+		_G["MultiBarBottomRightButton"..i.."HotKey"]:SetAlpha(0) -- bottom right bar
+		_G["MultiBarBottomLeftButton"..i.."HotKey"]:SetAlpha(0) -- bottom left bar
+		_G["MultiBarRightButton"..i.."HotKey"]:SetAlpha(0) -- right bar
+		_G["MultiBarLeftButton"..i.."HotKey"]:SetAlpha(0) -- left bar
+end
 
 
 MainMenuBarPageNumber:SetAlpha(0)
@@ -29,12 +29,13 @@ for i=0,3 do _G["MainMenuMaxLevelBar"..i]:SetAlpha(0)end
 -- XP & REP Bar
 MainMenuExpBar:SetAlpha(0)
 ReputationWatchBar:SetAlpha(0)
+ArtifactWatchBar:SetAlpha(0)
 
 -- MainMenuBar
 MainMenuBarLeftEndCap:Hide() -- Hide Left Griffon.
 MainMenuBarRightEndCap:Hide() -- Hide Right Griffon.
 
-MainMenuBarMaxLevelBar:SetAlpha(0) -- hide the exp bar bg texture.
+-- MainMenuBarMaxLevelBar:SetAlpha(0) -- hide the exp bar bg texture.
 MainMenuBarTexture0:Hide() -- hide all the background textures.
 MainMenuBarTexture1:Hide() -- leaving them on looks better,
 MainMenuBarTexture2:Hide() -- unless you are going to hide the
@@ -42,7 +43,7 @@ MainMenuBarTexture3:Hide() -- micromenu and bag buttons too.
 SlidingActionBarTexture0:SetAlpha(0) -- hide pet bar background
 SlidingActionBarTexture1:SetAlpha(0) -- hide pet bar background
 
--- Bags
+-- -- Bags
 MainMenuBarBackpackButton:Hide() -- Hide Bag
 CharacterBag0Slot:Hide()  -- Hide Bag
 CharacterBag1Slot:Hide()  -- Hide Bag
@@ -51,15 +52,15 @@ CharacterBag3Slot:Hide()   -- Hide Bag
 
 
 -- MicroMenu
--- CharacterMicroButton:SetAlpha(0) -- Hide MicroMenu
--- SpellbookMicroButton:SetAlpha(0) -- Hide MicroMenu
--- TalentMicroButton:SetAlpha(0) -- Hide MicroMenu
--- AchievementMicroButton:SetAlpha(0) -- Hide MicroMenu
--- QuestLogMicroButton:SetAlpha(0) -- Hide MicroMenu
--- GuildMicroButton:SetAlpha(0) -- Hide MicroMenu
--- PVPMicroButton:SetAlpha(0) -- Hide MicroMenu
--- LFDMicroButton:SetAlpha(0) -- Hide MicroMenu
--- CompanionsMicroButton:SetAlpha(0) -- Hide MicroMenu
--- EJMicroButton:SetAlpha(0) -- Hide MicroMenu
--- MainMenuMicroButton:SetAlpha(0) -- Hide MicroMenu
--- HelpMicroButton:SetAlpha(0) -- Hide MicroMenu
+CharacterMicroButton:SetAlpha(0) -- Hide MicroMenu
+SpellbookMicroButton:SetAlpha(0) -- Hide MicroMenu
+TalentMicroButton:SetAlpha(0) -- Hide MicroMenu
+AchievementMicroButton:SetAlpha(0) -- Hide MicroMenu
+QuestLogMicroButton:SetAlpha(0) -- Hide MicroMenu
+GuildMicroButton:SetAlpha(0) -- Hide MicroMenu
+LFDMicroButton:SetAlpha(0) -- Hide MicroMenu
+CollectionsMicroButton:SetAlpha(0) -- Hide MicroMenu
+EJMicroButton:SetAlpha(0) -- Hide MicroMenu
+MainMenuMicroButton:SetAlpha(0) -- Hide MicroMenu
+StoreMicroButton:SetAlpha(0) -- Hide MicroMenu
+HelpMicroButton:SetAlpha(0) -- Hide MicroMenu

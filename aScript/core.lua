@@ -3,14 +3,17 @@ frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 frame:RegisterEvent("PLAYER_LOGIN")
 
 if event =="PLAYER_LOGIN" then
-	print("Hi|cffff0000",GetUnitName("PLAYER"), "|r, aScripts v2.0.1 has loaded !!")
+	print("Hi|cffff0000",GetUnitName("PLAYER"), "|r, aScripts v3.0.1 has loaded !!")
 	print("type /|cff009cffashelp|r for commandlist!")
 end
 
 local function eventHandler(self,event)
 	if event == "PLAYER_ENTERING_WORLD" then
 		-- ### TESTING
-		
+		RuneFrame:ClearAllPoints()
+		RuneFrame:SetPoint("CENTER", UIParent, "CENTER", 0, -175)
+		RuneFrame.SetPoint = function() end
+		RuneFrame:SetScale(1)
 		-- ### TESTING END
 
 
@@ -25,29 +28,30 @@ local function eventHandler(self,event)
 		-- So, in this case we tell it to attach TargetFrameSpellBar with its "BOTTOM" to the "TOP" of TargetFrame, and move it 15 pixels to the left (x offset).		
 		
 		
-		PlayerFrame:SetScale(1)
-		TargetFrame:SetScale(1)
-		FocusFrame:SetScale(1)
-		BuffFrame:SetScale(1.18);
+		PlayerFrame:SetScale(1.26)
+		TargetFrame:SetScale(1.26)
+		FocusFrame:SetScale(1.14)
+		--BuffFrame:SetScale(1.18);
 
 		BuffFrame:ClearAllPoints();
 		BuffFrame:SetParent(MiniMapCluster);
 		BuffFrame:SetPoint("TOPRIGHT",-190,-15)
 
+		MinimapCluster:SetScale(1.19)
+		
 		TargetFrameToT:ClearAllPoints()
 		TargetFrameToT:SetPoint("BOTTOMRIGHT",TargetFrame,-15,-10)
 
 		FocusFrameToT:ClearAllPoints()
 		FocusFrameToT:SetPoint("BOTTOMRIGHT",FocusFrame,-15,-10)
 
-		CharacterMicroButton:ClearAllPoints()
-		CharacterMicroButton:SetPoint("BOTTOMLEFT", -590, 2)
+		-- CharacterMicroButton:ClearAllPoints()
+		-- CharacterMicroButton:SetPoint("BOTTOMLEFT", -590, 2)
 
 		MainMenuBar:SetScale(1)
 		MainMenuBar:ClearAllPoints()
 		MainMenuBar:SetPoint("CENTER",UIParent,"BOTTOM", 254, 26)
-		MainMenuBar.SetPoint = function() end		
-
+		MainMenuBar.SetPoint = function() end	
 			
 		StanceBarFrame:ClearAllPoints()
 		StanceBarFrame:SetPoint("CENTER",UIParent,"BOTTOM", -246, 165)
@@ -96,9 +100,9 @@ local function eventHandler(self,event)
 		CastingBarFrame.update = .1;
 
 		-- show ability icon on Blizzard castbar
-		CastingBarFrameIcon:Show()
-		CastingBarFrameIcon:SetSize(20, 20)
-		CastingBarFrameIcon:SetPoint("RIGHT", CastingBarFrame, "LEFT", -5, 2)
+		-- CastingBarFrameIcon:Show()
+		-- CastingBarFrameIcon:SetSize(20, 20)
+		-- CastingBarFrameIcon:SetPoint("RIGHT", CastingBarFrame, "LEFT", -5, 2)
 
 		-- unattach the target castbar from targetFrame and place it in the center
 		TargetFrameSpellBar:ClearAllPoints()
@@ -128,7 +132,7 @@ local function eventHandler(self,event)
 				end
 			end
 		end
-		--show the MultiBarLeft on mouse over, else hide
+		-- --show the MultiBarLeft on mouse over, else hide
 		local function MultiBarLeftOnHover(alpha)
 
 			if MultiBarLeft:IsShown() then
@@ -187,7 +191,7 @@ local function eventHandler(self,event)
 		
 		UIErrorsFrame:UnregisterEvent("UI_ERROR_MESSAGE")
 
-		for i=1,4 do _G["ChatFrame"..i]:SetFont("Fonts\\ARIALN.TTF",16,"OUTLINE")end	
+		for i=1,4 do _G["ChatFrame"..i]:SetFont("Fonts\\ARIALN.TTF",14,"OUTLINE")end	
 
 		-- Minimap Tweaks
 		MinimapZoomIn:Hide()
@@ -202,6 +206,7 @@ local function eventHandler(self,event)
 		end)
 		MiniMapTracking:ClearAllPoints()
 		MiniMapTracking:SetPoint("TOPRIGHT", -26, 7)
+		GarrisonLandingPageMinimapButton:SetScale(.65)
 
 		-- UnitFrame HP format: [120/140k] ... [currentHP/maxHP]
 		hooksecurefunc("CastingBarFrame_OnUpdate", function(self, elapsed)
@@ -221,16 +226,16 @@ local function eventHandler(self,event)
 		end)
 
 		-- adds classColor to TargetFrame & FocusFrame 
---		local function eventHandler(self, event, ...)
---				if UnitIsPlayer("target") then
---						c = RAID_CLASS_COLORS[select(2, UnitClass("target"))]
---						TargetFrameNameBackground:SetVertexColor(c.r, c.g, c.b)
---				end
---				if UnitIsPlayer("focus") then
---						c = RAID_CLASS_COLORS[select(2, UnitClass("focus"))]
---						FocusFrameNameBackground:SetVertexColor(c.r, c.g, c.b)
---				end
---		end
+		-- local function eventHandler(self, event, ...)
+				-- if UnitIsPlayer("target") then
+						-- c = RAID_CLASS_COLORS[select(2, UnitClass("target"))]
+						-- TargetFrameNameBackground:SetVertexColor(c.r, c.g, c.b)
+				-- end
+				-- if UnitIsPlayer("focus") then
+						-- c = RAID_CLASS_COLORS[select(2, UnitClass("focus"))]
+						-- FocusFrameNameBackground:SetVertexColor(c.r, c.g, c.b)
+				-- end
+		-- end
 
 
 		for _, BarTextures in pairs({TargetFrameNameBackground, FocusFrameNameBackground}) do
@@ -266,7 +271,7 @@ local function eventHandler(self,event)
 		}
 		for stub,numButtons in pairs(defaultStubs) do
 			for i=1,numButtons do
-				_G[stub..i.."HotKey"]:SetFont("Fonts\\MORPHEUS.ttf",16,"OUTLINE,THICKOUTLINE,MONOCHROME")
+				_G[stub..i.."HotKey"]:SetFont("Fonts\\MORPHEUS.ttf",12,"OUTLINE,THICKOUTLINE,MONOCHROME")
 			end
 		end
 
@@ -279,21 +284,20 @@ local function eventHandler(self,event)
 		end
 		
 		--classcolors
+		-- local function colour(statusbar, unit)
+				-- local _, class, c
+				-- if UnitIsPlayer(unit) and UnitIsConnected(unit) and unit == statusbar.unit and UnitClass(unit) then
+						-- _, class = UnitClass(unit)
+						-- c = CUSTOM_CLASS_COLORS and CUSTOM_CLASS_COLORS[class] or RAID_CLASS_COLORS[class]
+						-- statusbar:SetStatusBarColor(c.r, c.g, c.b)
+						-- PlayerFrameHealthBar:SetStatusBarColor(0,1,0)
+				-- end
+		-- end
 
---		local function colour(statusbar, unit)
---				local _, class, c
---				if UnitIsPlayer(unit) and UnitIsConnected(unit) and unit == statusbar.unit and UnitClass(unit) then
---						_, class = UnitClass(unit)
---						c = CUSTOM_CLASS_COLORS and CUSTOM_CLASS_COLORS[class] or RAID_CLASS_COLORS[class]
---						statusbar:SetStatusBarColor(c.r, c.g, c.b)
---						PlayerFrameHealthBar:SetStatusBarColor(0,1,0)
---				end
---		end
---
---		hooksecurefunc("UnitFrameHealthBar_Update", colour)
---		hooksecurefunc("HealthBar_OnValueChanged", function(self)
---				colour(self, self.unit)
---		end)
+		-- hooksecurefunc("UnitFrameHealthBar_Update", colour)
+		-- hooksecurefunc("HealthBar_OnValueChanged", function(self)
+				-- colour(self, self.unit)
+		-- end)
 
 		local function Show(frame)
 			--frame:UnregisterAllEvents()
